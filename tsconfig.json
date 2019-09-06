@@ -1,26 +1,30 @@
 {
+  "include": ["src", "types"],
   "compilerOptions": {
-    "alwaysStrict": true,
-    "esModuleInterop": true,
-    "jsx": "preserve",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "target": "es5",
     "module": "esnext",
-    "moduleResolution": "node",
-    "outDir": "dist",
+    "lib": ["dom", "esnext"],
+    "importHelpers": true,
     "declaration": true,
-    "noFallthroughCasesInSwitch": true,
+    "sourceMap": true,
+    "rootDir": "./",
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "strict": true,
-    "target": "esnext",
-    "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true,
-    "removeComments": false,
-    "preserveConstEnums": true,
-    "sourceMap": true
-  },
-  "exclude": ["node_modules"],
-  "include": ["**/*.ts", "**/*.tsx"]
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "paths": {
+      "*": ["src/*", "node_modules/*"]
+    },
+    "jsx": "react",
+    "esModuleInterop": true
+  }
 }
