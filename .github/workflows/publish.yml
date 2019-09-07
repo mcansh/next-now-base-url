@@ -2,7 +2,7 @@ name: publish to npm and gpr on release
 
 on:
   push:
-    tags: '*'
+    tags: '*-canary.*'
 
 jobs:
   run:
@@ -15,12 +15,12 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - run: npm install -g npm@next
       - run: npm install
-      - run: npm publish --access public
+      - run: npm publish --access public --tag canary
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - uses: actions/setup-node@v1
         with:
           registry-url: 'https://npm.pkg.github.com'
-      - run: npm publish
+      - run: npm publish --tag canary
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
