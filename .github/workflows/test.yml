@@ -1,0 +1,16 @@
+name: test
+
+on:
+  push:
+    tags: '*'
+
+jobs:
+  my-job
+    name: my-job
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Print GitHub Context # Debug step
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
