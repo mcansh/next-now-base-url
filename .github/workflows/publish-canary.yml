@@ -1,4 +1,4 @@
-name: publish to npm and gpr on release
+name: publish to npm and gpr on canary tag
 
 on:
   push:
