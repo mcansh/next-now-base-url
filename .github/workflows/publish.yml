@@ -1,0 +1,39 @@
+name: publish to npm and gpr on new tag
+
+on:
+  push:
+    tags: '*'
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@v1
+      
+      - name: npm install
+      - run: npm install -g npm@next
+      - run: npm install
+      
+      - name: Publish to npm
+        with:
+          node-version: '10.x'
+          registry-url: 'https://registry.npmjs.org'
+        if: contains(github.ref, '-canary.')
+        run: npm publish --access public --tag canary
+        if: !contains(github.ref, '-canary.')
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        
+      - name: Publish to gpr
+        uses: actions/setup-node@v1
+        with:
+          node-version: '10.x'
+          registry-url: 'https://npm.pkg.github.com'
+        if: contains(github.ref, '-canary.')
+        run: npm publish --tag canary
+        if: !contains(github.ref, '-canary.')
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
