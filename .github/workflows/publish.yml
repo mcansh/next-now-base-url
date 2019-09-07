@@ -19,10 +19,13 @@ jobs:
         with:
           node-version: '10.x'
           registry-url: 'https://registry.npmjs.org'
-        if: contains(github.ref, '-canary.')
+
         run: npm publish --access public --tag canary
-        if: !contains(github.ref, '-canary.')
+        if: contains(github.ref, '-canary.')
+        
         run: npm publish --access public
+        if: !contains(github.ref, '-canary.')
+
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         
@@ -31,9 +34,12 @@ jobs:
         with:
           node-version: '10.x'
           registry-url: 'https://npm.pkg.github.com'
-        if: contains(github.ref, '-canary.')
+        
         run: npm publish --tag canary
-        if: !contains(github.ref, '-canary.')
+        if: contains(github.ref, '-canary.')
+        
         run: npm publish
+        if: !contains(github.ref, '-canary.')
+        
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
