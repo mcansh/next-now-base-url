@@ -17,6 +17,8 @@ jobs:
       - run: npm install
       - run: npm publish --access public --tag canary
         if: contains(github.ref, '-canary.')
+      - run: npm publish --access public
+        if: !contains(github.ref, '-canary.')
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - uses: actions/setup-node@v1
