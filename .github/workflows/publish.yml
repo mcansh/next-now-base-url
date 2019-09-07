@@ -10,36 +10,18 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - uses: actions/setup-node@v1
-      
-      - name: npm install
-      - run: npm install -g npm@next
-      - run: npm install
-      
-      - name: Publish to npm
         with:
           node-version: '10.x'
           registry-url: 'https://registry.npmjs.org'
-
-        run: npm publish --access public --tag canary
+      - run: npm install -g npm@next
+      - run: npm install
+      - run: npm publish --access public --tag canary
         if: contains(github.ref, '-canary.')
-        
-        run: npm publish --access public
-        if: !contains(github.ref, '-canary.')
-
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        
-      - name: Publish to gpr
-        uses: actions/setup-node@v1
+      - uses: actions/setup-node@v1
         with:
-          node-version: '10.x'
           registry-url: 'https://npm.pkg.github.com'
-        
-        run: npm publish --tag canary
-        if: contains(github.ref, '-canary.')
-        
-        run: npm publish
-        if: !contains(github.ref, '-canary.')
-        
+      - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
