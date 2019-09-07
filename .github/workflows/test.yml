@@ -5,8 +5,7 @@ on:
     tags: '*'
 
 jobs:
-  my-job
-    name: my-job
+  run:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
