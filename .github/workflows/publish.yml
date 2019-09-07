@@ -24,6 +24,9 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           registry-url: 'https://npm.pkg.github.com'
+      - run: npm publish --tag canary
+        if: contains(github.ref, '-canary.')
       - run: npm publish
+        if: contains(github.ref, '-canary.') != true
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
