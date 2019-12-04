@@ -12,6 +12,7 @@
   "files": [
     "dist"
   ],
+  "prettier": "@mcansh/eslint-config/prettier.config",
   "scripts": {
     "prepublishOnly": "npm run build",
     "lint": "eslint ./ --ext js,ts,tsx --fix",
@@ -21,25 +22,25 @@
     "test": "tsdx test"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "2.1.0",
-    "@typescript-eslint/parser": "2.1.0",
-    "del-cli": "2.0.0",
-    "eslint": "6.3.0",
+    "@mcansh/eslint-config": "2.3.1",
+    "@types/jest": "24.0.23",
+    "@typescript-eslint/eslint-plugin": "2.10.0",
+    "@typescript-eslint/parser": "2.10.0",
+    "eslint": "6.7.2",
     "eslint-config-airbnb": "18.0.1",
-    "eslint-config-kentcdodds": "14.4.0",
-    "eslint-config-mcansh": "2.1.1",
+    "eslint-config-kentcdodds": "14.6.1",
     "eslint-plugin-import": "2.18.2",
     "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-plugin-promise": "4.2.1",
-    "eslint-plugin-react": "7.14.3",
-    "eslint-plugin-react-hooks": "2.0.1",
-    "husky": "3.0.5",
-    "lint-staged": "9.2.5",
-    "prettier": "1.18.2",
-    "typescript": "3.6.2",
-    "@types/jest": "24.0.18",
-    "tsdx": "0.9.1",
-    "tslib": "1.10.0"
+    "eslint-plugin-react": "7.17.0",
+    "eslint-plugin-react-hooks": "2.3.0",
+    "eslint-plugin-you-dont-need-lodash-underscore": "6.8.0",
+    "husky": "3.1.0",
+    "lint-staged": "9.5.0",
+    "prettier": "1.19.1",
+    "tsdx": "0.11.0",
+    "tslib": "1.10.0",
+    "typescript": "3.7.3"
   },
   "husky": {
     "hooks": {
@@ -48,9 +49,11 @@
   },
   "lint-staged": {
     "*.+(js|jsx|ts|tsx)": [
-      "eslint --fix"
+      "eslint --fix",
+      "prettier --write",
+      "git add"
     ],
-    "*.+(js|jsx|json|yml|yaml|css|less|scss|ts|tsx|md|graphql|mdx)": [
+    "*.+(json|yml|yaml|css|less|scss|md|graphql|mdx)": [
       "prettier --write",
       "git add"
     ]
